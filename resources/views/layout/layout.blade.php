@@ -44,7 +44,7 @@
                             <a href="{{ url('/') }}">Home</a>
                         </li>
                         <li class="nav-item {{ setActive('about') }}">
-                            <a href="{{ url('/about') }}">About</a>
+                            <a href="{{ about('about') }}">About</a>
                         </li>
                         <li class="nav-item dropdown {{ setActive('services*') }}">
                             <a href="{{ url('/services') }}">Services <i class="fas fa-angle-down"></i></a>
@@ -56,14 +56,14 @@
                             </ul>
                         </li>
                         <li class="nav-item {{ setActive('team') }}">
-                            <a href="{{ url('/team') }}">Our Team</a>
+                            <a href="{{ route('team') }}">Our Teams</a>
                         </li>
                         <li class="nav-item {{ setActive('faq') }}">
-                            <a href="{{ url('/faq') }}">FAQ</a>
+                            <a href="{{ route('faq') }}">FAQ</a>
                         </li>
-                        <li class="nav-item {{ setActive('contact') }}">
+                        {{-- <li class="nav-item {{ setActive('contact') }}">
                             <a href="{{ url('/contact') }}">Contact</a>
-                        </li>
+                        </li> --}}
                     </ul>
                 </nav>
 

@@ -19,9 +19,13 @@ Route::middleware('auth')->group(function () {
 });
 Route::view('addteam', 'pages.addteam')->name('addteam');
 Route::post('addteam', [HomeController::class, 'addTeam'])->name('addteam');
-Route::get('/teams', [HomeController::class, 'getTeams'])->name('teams');
+Route::get('teams', [HomeController::class, 'teams'])->name('teams');
+Route::view('faq', 'pages.faq')->name('faq');
+Route::view('about', 'pages.about')->name('about');
+Route::get('contact/{id}', [HomeController::class, 'showcontact'])->name('contact');
 Route::get('/team/{id}', [HomeController::class, 'getTeam'])->name('team');
 Route::get('/edit-team/{id}', [HomeController::class, 'editTeam'])->name('editTeam');
 Route::post('/update-team/{id}', [HomeController::class, 'updateTeam'])->name('updateTeam');
 Route::delete('/delete-team/{id}', [HomeController::class, 'deleteTeam'])->name('deleteTeam');
+Route::post('contact', [HomeController::class, 'sendContact'])->name('contact');
 require __DIR__ . '/auth.php';

@@ -20,6 +20,12 @@ class HomeController extends Controller
         $team->save();
         return redirect()->back()->with('success', 'Team added successfully!');
     }
+    public function teams()
+    {
+        $teams = Team::all(); // or add filters like ->take(3) if only top leaders
+        return view('teams', compact('teams'));
+    }
+
     public function getTeams()
     {
         $teams = Team::all();
@@ -30,6 +36,7 @@ class HomeController extends Controller
         $team = Team::find($id);
         return view('team', compact('team'));
     }
+
     public function editTeam($id)
     {
         $team = Team::find($id);
@@ -50,5 +57,27 @@ class HomeController extends Controller
         $team = Team::find($id);
         $team->delete();
         return redirect()->back()->with('success', 'Team deleted successfully!');
+    }
+    public function showcontact($id)
+    {
+        $team = Team::find($id);
+        return view('pages.contact', compact('team'));
+    }
+    public function sendContact(Request $request, $teamId)
+    {
+        $team = Team::findOrFail($teamId);
+
+        $data = [
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'service' => $request->service,
+            'message' => $request->message,
+            'team_name' => $team->name,
+        ];
+
+        Mail::to($team->email)->send(new TeamContactMail($data));
+
+        return redirect()->back()->with('success', 'Your message has been sent to the team!');
     }
 }
